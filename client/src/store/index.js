@@ -29,6 +29,7 @@ const actionLogger = store => next => action => {
 const INITIAL_STATE = {
   uiState: {
     isDataLoading: false,
+    videoPagesLimit: 3,
     videosNextPageToken: null,
   },
   appState: {

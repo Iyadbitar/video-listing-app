@@ -11,21 +11,34 @@ import styles from './videos-listing.component.scss';
 class VideosListing extends React.Component {
 
   static propTypes = {
-    videosList: PropTypes.array.isRequired
+    isDataLoading: PropTypes.bool.isRequired,
+    videosList: PropTypes.array.isRequired,
+    videoPagesLimit: PropTypes.number.isRequired,
+    search: PropTypes.string.isRequired
   }
 
   static defaultProps = {
-    videosList: []
+    isDataLoading: true,
+    videosList: [],
+    videoPagesLimit: 1000,
+    search: 'surffing'
   }
 
   componentDidMount() {
-    this.props.actions.loadVideosListAction('surffing');
+    this.props.actions.loadVideosListAction(this.props.search);
+  }
+
+  onScrollToPageBottom = (event) => {
+    if (this.props.isDataLoading || 0 === this.props.videoPagesLimit) {
+      return;
+    }
+    this.props.actions.loadVideosListAction(this.props.search);
   }
 
   render() {
     return <div className={styles['videos']}>
       <h1>List</h1>
-      <ScrollDetector>
+      <ScrollDetector isActive={this.props.videoPagesLimit > 0} onScrollToPageBottom={this.onScrollToPageBottom}>
         <VideosList videos={this.props.videosList} />
       </ScrollDetector>
     </div>
@@ -34,6 +47,8 @@ class VideosListing extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    isDataLoading: state.uiState.isDataLoading,
+    videoPagesLimit: state.uiState.videoPagesLimit,
     videosList: state.appState.videosList
   }
 }

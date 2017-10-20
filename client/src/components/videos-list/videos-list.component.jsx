@@ -23,7 +23,7 @@ export default class VideosList extends React.Component {
           (video) => <VideosListItem
             description={video.snippet.description}
             key={video.id.videoId || video.id.playlistId}
-            id={video.id.videoId || video.id.playlistId}
+            id={video.id.videoId || video.id.playlistId || video.id.channelId}
             title={video.snippet.title}
             thumbnails={video.snippet.thumbnails}/>
           )
