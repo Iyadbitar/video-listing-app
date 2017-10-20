@@ -1,0 +1,28 @@
+:local .video {
+  background-color: #fff;
+  min-height: 300px;
+  padding: 0;
+  margin-bottom: 20px;
+  cursor: pointer;
+  &:hover {
+    background: #eee;
+  }
+}
+:local .image {
+  display: block;
+  width:100%;
+}
+:local .content {
+  padding:5%;
+  overflow: none;
+}
+:local .heading {
+  font-weight: 600px;
+  line-height: 25px;
+  min-height: 50px;
+}
+:local .text {
+  font-size: 1.3rem;
+  width: 100%;
+  overflow: hidden;
+}
