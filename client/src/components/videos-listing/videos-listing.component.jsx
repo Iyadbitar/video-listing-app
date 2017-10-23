@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions';
 
-import { VideosList, ScrollDetector } from '../'
+import { Loader, VideosList, ScrollDetector } from '../'
 
 import styles from './videos-listing.component.scss';
 
@@ -21,7 +21,7 @@ class VideosListing extends React.Component {
     isDataLoading: true,
     videosList: [],
     videoPagesLimit: 1000,
-    search: 'surffing'
+    search: 'javascript'
   }
 
   componentDidMount() {
@@ -41,6 +41,7 @@ class VideosListing extends React.Component {
       <ScrollDetector isActive={this.props.videoPagesLimit > 0} onScrollToPageBottom={this.onScrollToPageBottom}>
         <VideosList videos={this.props.videosList} />
       </ScrollDetector>
+      <Loader isVisible={this.props.isDataLoading}/>
     </div>
   }
 }
